@@ -8,14 +8,6 @@
 }*/
 
 
-
-//ф-ия, оповещающая пользователю о неккоректности введённых им данных
-void input_error() {
-    
-
-}
-
-
 //ф-ия, обрабатывающая неккоректные входные данные 
 void input_bug_catcher(char num[], bool *fl) {
 
@@ -24,25 +16,16 @@ void input_bug_catcher(char num[], bool *fl) {
 
     for (int i = 0; i < len_s; i++) {
         if (num[i] == 'M') {
-            if (i == 9) {
-                input_error();
-                break;
-            }
+            if (i == 9) break; // проверка, чтобы число не превышало 10тыс.
             if (num[i + 1] == 'M') continue;
             i++;
         }
         if (num[i] == 'D') {
-            if (num[i + 1] == 'D') {
-                input_error();
-                break;
-            }
+            if (num[i + 1] == 'D') break; 
             i++;
         }
         if (num[i] == 'C') {
-            if (d_check > 4) {
-                input_error();
-                break;
-            }
+            if (d_check > 4) break;
             if ((num[i + 1] == 'D' && num[i - 1] != 'D') || (num[i + 1] == 'M' && num[i - 1] != 'M')) i++;
             else if (num[i + 1] == 'С') {
                 d_check++;
@@ -53,17 +36,11 @@ void input_bug_catcher(char num[], bool *fl) {
 
         }
         if (num[i] == 'L') {
-            if (num[i + 1] == 'L') {
-                input_error();
-                break;
-            }
+            if (num[i + 1] == 'L') break;
             i++;
         }
         if (num[i] == 'X') {
-            if (d_check > 4) {
-                input_error();
-                break;
-            }
+            if (d_check > 4) break;
             if ((num[i + 1] == 'L' && num[i - 1] != 'L') || (num[i + 1] == 'C' && num[i - 1] != 'C' && num[i - 1] != 'D')) i++;
             else if (num[i + 1] == 'X') {
                 d_check++;
@@ -74,17 +51,11 @@ void input_bug_catcher(char num[], bool *fl) {
 
         }
         if (num[i] == 'V') {
-            if (num[i + 1] == 'V') {
-                input_error();
-                break;
-            }
+            if (num[i + 1] == 'V') break;
             i++;
         }
         if (num[i] == 'I') {
-            if (d_check > 4) {
-                input_error();
-                break;
-            }
+            if (d_check > 4) break;
             if ((num[i + 1] == 'V' && num[i - 1] != 'V') || (num[i + 1] == 'X' && num[i - 1] != 'X')) i++;
             else if (num[i + 1] == 'I') {
                 d_check++;
@@ -92,10 +63,7 @@ void input_bug_catcher(char num[], bool *fl) {
             }
             i++;
         } 
-        if(i < len_s) {
-            input_error();
-            break;
-        }
+        if(i < len_s) break;
         *fl = false;
         return;
     }
