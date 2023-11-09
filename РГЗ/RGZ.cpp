@@ -110,36 +110,27 @@ void user_interface() {
     char firstRomanNumeral[16], secondRomanNumeral[16], sumOfRomanNumeral[28];
     bool flag = false;
 
-    printf("Введите первое римское число : ");
-    gets_s(firstRomanNumeral); //ввод первого числа
-    input_bug_catcher(firstRomanNumeral, &flag); //проверка на правильность введённых данных
+    // Ввод и проверка первого числа
+    do {
+        printf("Введите первое римское число : ");
+        gets_s(firstRomanNumeral);
+        input_bug_catcher(firstRomanNumeral, &flag);
 
-    while (flag) {
-        printf("Вы ввели неккоректное число или число, выходящее за допустимый диапазон.\n");
-        printf("Введите число заново:");
+        if (flag) printf("Вы ввели неккоректное число или число, выходящее за допустимый диапазон. Введите число заново.\n");
 
-        gets_s(firstRomanNumeral); //ввод первого числа
-        input_bug_catcher(firstRomanNumeral, &flag); //проверка на правильность введённых данных
+    } while (flag);
 
-    }
+    // Ввод и проверка второго числа
+    do {
+        printf("Введите второе римское число: ");
+        gets_s(secondRomanNumeral);
+        input_bug_catcher(secondRomanNumeral, &flag);
 
-    printf("Введите второе римское число: ");
-    gets_s(secondRomanNumeral); //ввод второго числа
-    input_bug_catcher(secondRomanNumeral, &flag); //проверка на правильность введённых данных
+        if (flag) printf("Вы ввели неккоректное число или число, выходящее за допустимый диапазон. Введите число заново.\n");
+        
+    } while (flag);
 
-    while (flag) {
-        printf("Вы ввели неккоректное число или число, выходящее за допустимый диапазон.\n");
-        printf("Введите число заново:");
-
-        gets_s(firstRomanNumeral); //ввод первого числа
-        input_bug_catcher(firstRomanNumeral, &flag); //проверка на правильность введённых данных
-
-    }
-    printf("%c %c", firstRomanNumeral, secondRomanNumeral);
-
-    //plus_num(firstRomanNumeral, secondRomanNumeral);
-    printf("Результат суммирования в римской системе счисления: %d\n", sumOfRomanNumeral);
-
+    printf("Результат суммирования в римской системе счисления: %s\n", sumOfRomanNumeral);
 }
 
 int main() {
