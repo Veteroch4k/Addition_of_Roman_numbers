@@ -25,14 +25,14 @@ void input_bug_catcher(char num[], bool *fl) {
             i++;
         }
         if (num[i] == 'C') {
-            if (d_check > 4) break;
-            if ((num[i + 1] == 'D' && num[i - 1] != 'D') || (num[i + 1] == 'M' && num[i - 1] != 'M')) i++;
-            else if (num[i + 1] == 'С') {
+            if (d_check > 3) break;
+            if ((num[i + 1] == 'D' && num[i - 1] != 'D') || (num[i + 1] == 'M')) i++;
+            else if (num[i + 1] == 'C') {
                 d_check++;
                 continue;
             }
             i++;
-            d_check = 0; //обнуляем счетчик
+            d_check = 1; //обнуляем счетчик
 
         }
         if (num[i] == 'L') {
@@ -40,14 +40,14 @@ void input_bug_catcher(char num[], bool *fl) {
             i++;
         }
         if (num[i] == 'X') {
-            if (d_check > 4) break;
-            if ((num[i + 1] == 'L' && num[i - 1] != 'L') || (num[i + 1] == 'C' && num[i - 1] != 'C' && num[i - 1] != 'D')) i++;
+            if (d_check > 3) break;
+            if ((num[i + 1] == 'L' && num[i - 1] != 'L') || (num[i + 1] == 'C')) i++;
             else if (num[i + 1] == 'X') {
                 d_check++;
                 continue;
             }
             i++;
-            d_check = 0; //обнуляем счетчик
+            d_check = 1; //обнуляем счетчик
 
         }
         if (num[i] == 'V') {
@@ -55,7 +55,7 @@ void input_bug_catcher(char num[], bool *fl) {
             i++;
         }
         if (num[i] == 'I') {
-            if (d_check > 4) break;
+            if (d_check > 3) break;
             if ((num[i + 1] == 'V' && num[i - 1] != 'V') || (num[i + 1] == 'X' && num[i - 1] != 'X')) i++;
             else if (num[i + 1] == 'I') {
                 d_check++;
