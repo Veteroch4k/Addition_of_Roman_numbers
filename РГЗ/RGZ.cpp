@@ -3,9 +3,9 @@
 #include<windows.h>
 
 // основная функция программы
-char* plus_num(char num1[], char num2[]) {
+/*char* plus_num(char num1[], char num2[]) {
 
-}
+}*/
 
 
 
@@ -17,8 +17,7 @@ void input_error() {
 
 
 //ф-ия, обрабатывающая неккоректные входные данные 
-void input_bug_catcher(char num[], bool *flag) {
-
+void input_bug_catcher(char num[], bool *fl) {
 
     int len_s = strlen(num); // разрядность числа num
     int d_check = 1; // проверка числа на допустимое количество цифр
@@ -97,9 +96,10 @@ void input_bug_catcher(char num[], bool *flag) {
             input_error();
             break;
         }
-        flag = false;
+        *fl = false;
+        return;
     }
-    flag = true; //Почему-то не работает
+    *fl = true; 
 
 }
 
@@ -108,7 +108,7 @@ void input_bug_catcher(char num[], bool *flag) {
 void user_interface() {
 
     char firstRomanNumeral[16], secondRomanNumeral[16], sumOfRomanNumeral[28];
-    bool flag;
+    bool flag = false;
 
     printf("Введите первое римское число : ");
     gets_s(firstRomanNumeral); //ввод первого числа
@@ -137,7 +137,7 @@ void user_interface() {
     }
     printf("%c %c", firstRomanNumeral, secondRomanNumeral);
 
-    plus_num(firstRomanNumeral, secondRomanNumeral);
+    //plus_num(firstRomanNumeral, secondRomanNumeral);
     printf("Результат суммирования в римской системе счисления: %d\n", sumOfRomanNumeral);
 
 }
