@@ -2,16 +2,23 @@
 #include<math.h>
 #include<windows.h>
 
+// основная функция программы
+char* plus_num(char num1[], char num2[]) {
+
+}
+
+
 
 //ф-ия, оповещающая пользователю о неккоректности введённых им данных
 void input_error() {
-    printf("Вы допустили ошибку\n");
+    
 
 }
 
 
 //ф-ия, обрабатывающая неккоректные входные данные 
-void input_bug_catcher(char num[]) {
+void input_bug_catcher(char num[], bool *flag) {
+
 
     int len_s = strlen(num); // разрядность числа num
     int d_check = 1; // проверка числа на допустимое количество цифр
@@ -64,7 +71,7 @@ void input_bug_catcher(char num[]) {
                 continue;
             }
             i++;
-            d_check = 0;
+            d_check = 0; //обнуляем счетчик
 
         }
         if (num[i] == 'V') {
@@ -74,7 +81,6 @@ void input_bug_catcher(char num[]) {
             }
             i++;
         }
-        d_check = 0; //обнуляем счетчик
         if (num[i] == 'I') {
             if (d_check > 4) {
                 input_error();
@@ -89,9 +95,11 @@ void input_bug_catcher(char num[]) {
         } 
         if(i < len_s) {
             input_error();
+            break;
         }
-        break;
+        flag = false;
     }
+    flag = true; //Почему-то не работает
 
 }
 
@@ -99,22 +107,38 @@ void input_bug_catcher(char num[]) {
 //ф-ия, реализующая основной интерфейс пользователя
 void user_interface() {
 
-    // ('\0')
-    //MMMMMMMMMCMXCIX = 9999 Самое большое и самое длинное возможное число, MMMMMMMMMMMMMMMMMMMCMXCVIII = 19998 Самое большая возможная сумма 
     char firstRomanNumeral[16], secondRomanNumeral[16], sumOfRomanNumeral[28];
+    bool flag;
 
-    printf("Сложение чисел в римской системе счисления \nВведите первое римское число: ");
+    printf("Введите первое римское число : ");
     gets_s(firstRomanNumeral); //ввод первого числа
-    input_bug_catcher(firstRomanNumeral); //проверка на правильность введённых данных
+    input_bug_catcher(firstRomanNumeral, &flag); //проверка на правильность введённых данных
+
+    while (flag) {
+        printf("Вы ввели неккоректное число или число, выходящее за допустимый диапазон.\n");
+        printf("Введите число заново:");
+
+        gets_s(firstRomanNumeral); //ввод первого числа
+        input_bug_catcher(firstRomanNumeral, &flag); //проверка на правильность введённых данных
+
+    }
 
     printf("Введите второе римское число: ");
     gets_s(secondRomanNumeral); //ввод второго числа
-    input_bug_catcher(secondRomanNumeral); //проверка на правильность введённых данных
+    input_bug_catcher(secondRomanNumeral, &flag); //проверка на правильность введённых данных
 
+    while (flag) {
+        printf("Вы ввели неккоректное число или число, выходящее за допустимый диапазон.\n");
+        printf("Введите число заново:");
 
+        gets_s(firstRomanNumeral); //ввод первого числа
+        input_bug_catcher(firstRomanNumeral, &flag); //проверка на правильность введённых данных
 
-    //printf("Результат суммирования в римской системе счисления: %d\n", sumOfRomanNumeral);
-    //decimalToRoman(sum);
+    }
+    printf("%c %c", firstRomanNumeral, secondRomanNumeral);
+
+    plus_num(firstRomanNumeral, secondRomanNumeral);
+    printf("Результат суммирования в римской системе счисления: %d\n", sumOfRomanNumeral);
 
 }
 
@@ -123,6 +147,8 @@ int main() {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
+    printf("Сложение чисел в римской системе счисления\n");
+    printf("Вводите числа, входящие в диапазон от 0 до 10тыс.\n");
 
     user_interface();
 
