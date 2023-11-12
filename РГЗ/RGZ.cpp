@@ -8,15 +8,18 @@
 }*/
 
 
-//ф-ия, обрабатывающая неккоректные входные данные 
-void input_bug_catcher(char num[], bool *fl) {
+//ф-ия, обрабатывающая некорректные входные данные 
+void input_bug_catcher(char num[], bool *flag, bool *range) {
 
     int len_s = strlen(num); // разрядность числа num
     int d_check = 1; // проверка числа на допустимое количество цифр
 
     for (int i = 0; i < len_s; i++) {
         if (num[i] == 'M') {
-            if (i == 9) break; // проверка, чтобы число не превышало 10тыс.
+            if (i == 9) {
+                *range = true;
+                break;
+            }
             if (num[i + 1] == 'M') continue;
             i++;
         }
@@ -26,13 +29,13 @@ void input_bug_catcher(char num[], bool *fl) {
         }
         if (num[i] == 'C') {
             if (d_check > 3) break;
-            if ((num[i + 1] == 'D' && num[i - 1] != 'D') || (num[i + 1] == 'M')) i++;
+            if (((num[i + 1] == 'D' && num[i - 1] != 'D') || (num[i + 1] == 'M')) && num[i - 1] != 'C') i++;
             else if (num[i + 1] == 'C') {
                 d_check++;
                 continue;
             }
             i++;
-            d_check = 1; //обнуляем счетчик
+            d_check = 1; //сбрасываем счетчик
 
         }
         if (num[i] == 'L') {
@@ -41,13 +44,13 @@ void input_bug_catcher(char num[], bool *fl) {
         }
         if (num[i] == 'X') {
             if (d_check > 3) break;
-            if ((num[i + 1] == 'L' && num[i - 1] != 'L') || (num[i + 1] == 'C')) i++;
+            if (((num[i + 1] == 'L' && num[i - 1] != 'L') || (num[i + 1] == 'C')) && num[i - 1] != 'X') i++;
             else if (num[i + 1] == 'X') {
                 d_check++;
                 continue;
             }
             i++;
-            d_check = 1; //обнуляем счетчик
+            d_check = 1; //сбрасываем счетчик
 
         }
         if (num[i] == 'V') {
@@ -56,7 +59,7 @@ void input_bug_catcher(char num[], bool *fl) {
         }
         if (num[i] == 'I') {
             if (d_check > 3) break;
-            if ((num[i + 1] == 'V' && num[i - 1] != 'V') || (num[i + 1] == 'X' && num[i - 1] != 'X')) i++;
+            if (((num[i + 1] == 'V' && num[i - 1] != 'V') || (num[i + 1] == 'X' && num[i - 1] != 'X')) && num[i - 1] != 'I') i++;
             else if (num[i + 1] == 'I') {
                 d_check++;
                 continue;
@@ -64,10 +67,10 @@ void input_bug_catcher(char num[], bool *fl) {
             i++;
         } 
         if(i < len_s) break;
-        *fl = false; // Ошибок в вводе не обнаружено
+        *flag = false; // Ошибок в вводе не обнаружено
         return;
     }
-    *fl = true; //Есть допущенные ошибки в вводе
+    *flag = true; //Допущены ошибки в вводе
 
 }
 
@@ -76,15 +79,17 @@ void input_bug_catcher(char num[], bool *fl) {
 void user_interface() {
 
     char firstRomanNumeral[16], secondRomanNumeral[16], sumOfRomanNumeral[28];
-    bool flag = false;
+    bool flag = false; //корректно ли введено число
+    bool range = false; // не превышает ли число допустимый диапазон
 
     // Ввод и проверка первого числа
     do {
         printf("Введите первое римское число : ");
         gets_s(firstRomanNumeral);
-        input_bug_catcher(firstRomanNumeral, &flag);
-
-        if (flag) printf("Вы ввели неккоректное число или число, выходящее за допустимый диапазон. Введите число заново.\n");
+        input_bug_catcher(firstRomanNumeral, &flag, &range);
+        
+        if (range) printf("Вы ввели число, выходящее за допустимый диапазон. Введите число заново.\n");
+        else if (flag) printf("Вы ввели некорректное число. Введите число заново.\n");
 
     } while (flag);
 
@@ -92,9 +97,10 @@ void user_interface() {
     do {
         printf("Введите второе римское число: ");
         gets_s(secondRomanNumeral);
-        input_bug_catcher(secondRomanNumeral, &flag);
+        input_bug_catcher(secondRomanNumeral, &flag, &range);
 
-        if (flag) printf("Вы ввели неккоректное число или число, выходящее за допустимый диапазон. Введите число заново.\n");
+        if (range) printf("Вы ввели число, выходящее за допустимый диапазон. Введите число заново.\n");
+        else if (flag) printf("Вы ввели некорректное число. Введите число заново.\n");
         
     } while (flag);
 
@@ -106,7 +112,7 @@ int main() {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
-    printf("Сложение чисел в римской системе счисления\n");
+    printf("Сложение двух натуральных чисел в римской системе счисления\n");
     printf("Вводите числа, входящие в диапазон от 0 до 10тыс.\n");
 
     user_interface();
