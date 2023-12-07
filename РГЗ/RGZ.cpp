@@ -4,15 +4,15 @@
 #include<windows.h>
 
 
-// Сложение двух римских чисел
+// РЎР»РѕР¶РµРЅРёРµ РґРІСѓС… СЂРёРјСЃРєРёС… С‡РёСЃРµР»
 void plus_num(char num1[], char num2[], char sum[]) {
 	int j = 0, i = 0;
 	_strrev(num1);
 	_strrev(num2);
 	int c = 0, count1 = 0, count2 = 0;
-	/*Это десяточки*/
+	/*Р­С‚Рѕ РґРµСЃСЏС‚РѕС‡РєРё*/
 	/**/
-	if (strstr(num1, "XI") != NULL) { 
+	if (strstr(num1, "XI") != NULL) {
 		if (strstr(num2, "XI") != NULL) strcat(sum, "IIIVX");
 		else if (strstr(num2, "IIIV") != NULL) strcat(sum, "IIVX");
 		else if (strstr(num2, "IIV") != NULL) strcat(sum, "IVX");
@@ -22,8 +22,9 @@ void plus_num(char num1[], char num2[], char sum[]) {
 		else if (strstr(num2, "III") != NULL) strcat(sum, "IIX");
 		else if (strstr(num2, "II") != NULL) strcat(sum, "IX");
 		else if (strstr(num2, "I") != NULL) strcat(sum, "X");
-		
-	} else if (strstr(num2, "XI") != NULL) {
+
+	}
+	else if (strstr(num2, "XI") != NULL) {
 		if (strstr(num1, "XI") != NULL) strcat(sum, "IIIVX");
 		else if (strstr(num1, "IIIV") != NULL) strcat(sum, "IIVX");
 		else if (strstr(num1, "IIV") != NULL) strcat(sum, "IVX");
@@ -47,8 +48,9 @@ void plus_num(char num1[], char num2[], char sum[]) {
 		else if (strstr(num2, "II") != NULL) strcat(sum, "IV");
 		else if (strstr(num2, "I") != NULL) strcat(sum, "V");
 
-		
-	} else if (strstr(num2, "VI") != NULL) {
+
+	}
+	else if (strstr(num2, "VI") != NULL) {
 		if (strstr(num1, "XI") != NULL) strcat(sum, "IIIX");
 		else if (strstr(num1, "IIIV") != NULL) strcat(sum, "IIX");
 		else if (strstr(num1, "IIV") != NULL) strcat(sum, "IX");
@@ -81,11 +83,11 @@ void plus_num(char num1[], char num2[], char sum[]) {
 			if (c == 2) strcat(sum, "II");
 			if (c == 1) strcat(sum, "I");
 
-			_strrev(sum); 
+			_strrev(sum);
 
 		}
 	}
-	/*Теперь до сотен*/
+	/*РўРµРїРµСЂСЊ РґРѕ СЃРѕС‚РµРЅ*/
 	count1 = 0;
 	count2 = 0;
 	c = 0;
@@ -149,10 +151,10 @@ void plus_num(char num1[], char num2[], char sum[]) {
 		}
 		/**/
 		if (strstr(num1, "X") != NULL || strstr(num2, "X") != NULL) {
-			char podItog[3]{}; // Считаем отдельно
+			char podItog[3]{}; // РЎС‡РёС‚Р°РµРј РѕС‚РґРµР»СЊРЅРѕ
 
-			// вернули обратно для подсчёта
-			_strrev(num1); 
+			// РІРµСЂРЅСѓР»Рё РѕР±СЂР°С‚РЅРѕ РґР»СЏ РїРѕРґСЃС‡С‘С‚Р°
+			_strrev(num1);
 			_strrev(num2);
 			/**/
 
@@ -172,17 +174,17 @@ void plus_num(char num1[], char num2[], char sum[]) {
 			if (c == 2) strcat(podItog, "XX");
 			if (c == 1) strcat(podItog, "X");
 
-			_strrev(podItog); 
+			_strrev(podItog);
 			strcat(sum, podItog);
 
-			// вернули обратно для подсчёта
+			// РІРµСЂРЅСѓР»Рё РѕР±СЂР°С‚РЅРѕ РґР»СЏ РїРѕРґСЃС‡С‘С‚Р°
 			_strrev(num1);
 			_strrev(num2);
 			/**/
 
 		}
 	}
-	/*Теперь до тысяч*/
+	/*РўРµРїРµСЂСЊ РґРѕ С‚С‹СЃСЏС‡*/
 	count1 = 0;
 	count2 = 0;
 	c = 0;
@@ -248,10 +250,10 @@ void plus_num(char num1[], char num2[], char sum[]) {
 		}
 		/**/
 		if (strstr(num1, "C") != NULL || strstr(num2, "C") != NULL) {
-			char podItog[3]{}; // Считаем отдельно
+			char podItog[3]{}; // РЎС‡РёС‚Р°РµРј РѕС‚РґРµР»СЊРЅРѕ
 
 
-			// вернули обратно для подсчёта
+			// РІРµСЂРЅСѓР»Рё РѕР±СЂР°С‚РЅРѕ РґР»СЏ РїРѕРґСЃС‡С‘С‚Р°
 			_strrev(num1);
 			_strrev(num2);
 			/**/
@@ -278,7 +280,7 @@ void plus_num(char num1[], char num2[], char sum[]) {
 		}
 	}
 
-	/*Более тысячи*/
+	/*Р‘РѕР»РµРµ С‚С‹СЃСЏС‡Рё*/
 	count1 = 0;
 	count1 = 0;
 	c = 0;
@@ -298,11 +300,11 @@ void plus_num(char num1[], char num2[], char sum[]) {
 
 }
 
-// Обработка некорректно введённого числа пользователем
+// РћР±СЂР°Р±РѕС‚РєР° РЅРµРєРѕСЂСЂРµРєС‚РЅРѕ РІРІРµРґС‘РЅРЅРѕРіРѕ С‡РёСЃР»Р° РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј
 void input_bug_catcher(char num[], bool* flag, bool* range) {
 
-	int len_s = strlen(num); // разрядность числа num
-	int d_check = 1; // проверка числа на допустимое количество цифр
+	int len_s = strlen(num); // СЂР°Р·СЂСЏРґРЅРѕСЃС‚СЊ С‡РёСЃР»Р° num
+	int d_check = 1; // РїСЂРѕРІРµСЂРєР° С‡РёСЃР»Р° РЅР° РґРѕРїСѓСЃС‚РёРјРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ С†РёС„СЂ
 
 	for (int i = 0; i < len_s; i++) {
 		if (num[i] == 'M') {
@@ -314,7 +316,7 @@ void input_bug_catcher(char num[], bool* flag, bool* range) {
 			i++;
 		}
 		if (num[i] == 'D') {
-			if (num[i + 1] == 'D') break; //это цифра может использоваться в числе только 1 раз
+			if (num[i + 1] == 'D') break; //СЌС‚Рѕ С†РёС„СЂР° РјРѕР¶РµС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ РІ С‡РёСЃР»Рµ С‚РѕР»СЊРєРѕ 1 СЂР°Р·
 			i++;
 		}
 		if (num[i] == 'C') {
@@ -325,11 +327,11 @@ void input_bug_catcher(char num[], bool* flag, bool* range) {
 				continue;
 			}
 			i++;
-			d_check = 1; //сбрасываем счетчик
+			d_check = 1; //СЃР±СЂР°СЃС‹РІР°РµРј СЃС‡РµС‚С‡РёРє
 
 		}
 		if (num[i] == 'L') {
-			if (num[i + 1] == 'L') break; //это цифра может использоваться в числе только 1 раз
+			if (num[i + 1] == 'L') break; //СЌС‚Рѕ С†РёС„СЂР° РјРѕР¶РµС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ РІ С‡РёСЃР»Рµ С‚РѕР»СЊРєРѕ 1 СЂР°Р·
 			i++;
 		}
 		if (num[i] == 'X') {
@@ -340,11 +342,11 @@ void input_bug_catcher(char num[], bool* flag, bool* range) {
 				continue;
 			}
 			i++;
-			d_check = 1; //сбрасываем счетчик
+			d_check = 1; //СЃР±СЂР°СЃС‹РІР°РµРј СЃС‡РµС‚С‡РёРє
 
 		}
 		if (num[i] == 'V') {
-			if (num[i + 1] == 'V') break; //это цифра может использоваться в числе только 1 раз
+			if (num[i + 1] == 'V') break; //СЌС‚Рѕ С†РёС„СЂР° РјРѕР¶РµС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ РІ С‡РёСЃР»Рµ С‚РѕР»СЊРєРѕ 1 СЂР°Р·
 			i++;
 		}
 		if (num[i] == 'I') {
@@ -357,42 +359,42 @@ void input_bug_catcher(char num[], bool* flag, bool* range) {
 			i++;
 		}
 		if (i < len_s) break;
-		*flag = false; // Ошибок в вводе не обнаружено
+		*flag = false; // РћС€РёР±РѕРє РІ РІРІРѕРґРµ РЅРµ РѕР±РЅР°СЂСѓР¶РµРЅРѕ
 		return;
 	}
-	*flag = true; //Допущены ошибки в вводе
+	*flag = true; //Р”РѕРїСѓС‰РµРЅС‹ РѕС€РёР±РєРё РІ РІРІРѕРґРµ
 
 }
 
-// Основной интерфейс пользователя
+// РћСЃРЅРѕРІРЅРѕР№ РёРЅС‚РµСЂС„РµР№СЃ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 void user_interface() {
 
 	char firstRomanNumeral[16], secondRomanNumeral[16], sumOfRomanNumeral[28]{};
-	bool flag = false; //корректно ли введено число
-	bool range = false; // не превышает ли число допустимый диапазон
+	bool flag = false; //РєРѕСЂСЂРµРєС‚РЅРѕ Р»Рё РІРІРµРґРµРЅРѕ С‡РёСЃР»Рѕ
+	bool range = false; // РЅРµ РїСЂРµРІС‹С€Р°РµС‚ Р»Рё С‡РёСЃР»Рѕ РґРѕРїСѓСЃС‚РёРјС‹Р№ РґРёР°РїР°Р·РѕРЅ
 
-	// Ввод и проверка первого числа
+	// Р’РІРѕРґ Рё РїСЂРѕРІРµСЂРєР° РїРµСЂРІРѕРіРѕ С‡РёСЃР»Р°
 	do {
-		printf("Введите первое римское число: ");
+		printf("Р’РІРµРґРёС‚Рµ РїРµСЂРІРѕРµ СЂРёРјСЃРєРѕРµ С‡РёСЃР»Рѕ: ");
 		gets_s(firstRomanNumeral);
 		input_bug_catcher(firstRomanNumeral, &flag, &range);
 
-		if (range) printf("Вы ввели число, выходящее за допустимый диапазон. Введите число заново.\n");
-		else if (flag) printf("Вы ввели некорректное число. Введите число заново.\n");
+		if (range) printf("Р’С‹ РІРІРµР»Рё С‡РёСЃР»Рѕ, РІС‹С…РѕРґСЏС‰РµРµ Р·Р° РґРѕРїСѓСЃС‚РёРјС‹Р№ РґРёР°РїР°Р·РѕРЅ. Р’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ Р·Р°РЅРѕРІРѕ.\n");
+		else if (flag) printf("Р’С‹ РІРІРµР»Рё РЅРµРєРѕСЂСЂРµРєС‚РЅРѕРµ С‡РёСЃР»Рѕ. Р’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ Р·Р°РЅРѕРІРѕ.\n");
 
 	} while (flag);
 
-	// Ввод и проверка второго числа
+	// Р’РІРѕРґ Рё РїСЂРѕРІРµСЂРєР° РІС‚РѕСЂРѕРіРѕ С‡РёСЃР»Р°
 	do {
-		printf("Введите второе римское число: ");
+		printf("Р’РІРµРґРёС‚Рµ РІС‚РѕСЂРѕРµ СЂРёРјСЃРєРѕРµ С‡РёСЃР»Рѕ: ");
 		gets_s(secondRomanNumeral);
 		input_bug_catcher(secondRomanNumeral, &flag, &range);
 
-		if (range) printf("Вы ввели число, выходящее за допустимый диапазон. Введите число заново.\n");
-		else if (flag) printf("Вы ввели некорректное число. Введите число заново.\n");
+		if (range) printf("Р’С‹ РІРІРµР»Рё С‡РёСЃР»Рѕ, РІС‹С…РѕРґСЏС‰РµРµ Р·Р° РґРѕРїСѓСЃС‚РёРјС‹Р№ РґРёР°РїР°Р·РѕРЅ. Р’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ Р·Р°РЅРѕРІРѕ.\n");
+		else if (flag) printf("Р’С‹ РІРІРµР»Рё РЅРµРєРѕСЂСЂРµРєС‚РЅРѕРµ С‡РёСЃР»Рѕ. Р’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ Р·Р°РЅРѕРІРѕ.\n");
 
 	} while (flag);
-	printf("Результат суммирования в римской системе счисления: ");
+	printf("Р РµР·СѓР»СЊС‚Р°С‚ СЃСѓРјРјРёСЂРѕРІР°РЅРёСЏ РІ СЂРёРјСЃРєРѕР№ СЃРёСЃС‚РµРјРµ СЃС‡РёСЃР»РµРЅРёСЏ: ");
 	plus_num(firstRomanNumeral, secondRomanNumeral, sumOfRomanNumeral);
 
 }
@@ -402,8 +404,8 @@ int main() {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
-	printf("Сложение двух натуральных чисел в римской системе счисления\n");
-	printf("Вводите числа, входящие в диапазон от 0 до 10мил.\n");
+	printf("Why a u still РЎР»РѕР¶РµРЅРёРµ РґРІСѓС… РЅР°С‚СѓСЂР°Р»СЊРЅС‹С… С‡РёСЃРµР» РІ СЂРёРјСЃРєРѕР№ СЃРёСЃС‚РµРјРµ СЃС‡РёСЃР»РµРЅРёСЏ\n");
+	printf("Р’РІРѕРґРёС‚Рµ С‡РёСЃР»Р°, РІС…РѕРґСЏС‰РёРµ РІ РґРёР°РїР°Р·РѕРЅ РѕС‚ 0 РґРѕ 10РјРёР».\n");
 
 	user_interface();
 
