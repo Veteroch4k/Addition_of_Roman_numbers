@@ -2,6 +2,7 @@
 #include<stdio.h>
 #include<math.h>
 #include<windows.h>
+#include<locale.h>
 #define N 33
 
 // исправление неккоректного римского числа
@@ -602,6 +603,7 @@ int main() {
 
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
+	setlocale(0, "");
 
 	printf("Сложение двух натуральных чисел в римской системе счисления\n");
 	printf("Вводите числа, входящие в диапазон от 0 до 10мил.\n");
