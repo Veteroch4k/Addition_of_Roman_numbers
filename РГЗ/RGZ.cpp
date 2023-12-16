@@ -9,57 +9,6 @@ int input_bug_catcher(char num[]);
 
 // исправление сотен
 void fix_hundread(char poditog[], char itog[], bool flag) {
-	if (!flag) {
-		if (strcmp(poditog, "DCCD") == 0 || strcmp(poditog, "CDCD") == 0 || strcmp(poditog, "CCCCCD") == 0
-			|| strcmp(poditog, "CMC") == 0 || strcmp(poditog, "MCC") == 0) strcat(itog, "M");
-		else if (strcmp(poditog, "DCD") == 0 || strcmp(poditog, "CDCDC") == 0
-			|| strcmp(poditog, "CCCCD") == 0) strcat(itog, "MC");
-		else if (strcmp(poditog, "DCDC") == 0) strcat(itog, "CCCD");
-		else if (strcmp(poditog, "MCMC") == 0) strcat(itog, "CCCDM");
-		else if (strcmp(poditog, "CMCMC") == 0) strcat(itog, "MCM");
-		else if (strcmp(poditog, "MCD") == 0) strcat(itog, "DCM");
-		else if (strcmp(poditog, "MCDC") == 0 || strcmp(poditog, "DCMC") == 0) strcat(itog, "CCCM");
-		else if (strcmp(poditog, "CCCCCCD") == 0 || strcmp(poditog, "CCDCD") == 0 || strcmp(poditog, "CDCCD") == 0
-			|| strcmp(poditog, "CMCC") == 0 || strcmp(poditog, "CCM") == 0) strcat(itog, "CM");
-		else if (strcmp(poditog, "CCCCCC") == 0 || strcmp(poditog, "CDCC") == 0 || strcmp(poditog, "CCDC") == 0) strcat(itog, "CD");
-		else if (strcmp(poditog, "CCCCC") == 0 || strcmp(poditog, "CDC") == 0 || strcmp(poditog, "DCC") == 0) strcat(itog, "D");
-		else if (strcmp(poditog, "CCCC") == 0) strcat(itog, "DC");
-		else if (strcmp(poditog, "CCDCC") == 0 || strcmp(poditog, "CCCDC") == 0) strcat(itog, "CCD");
-		else if (strcmp(poditog, "CCCDCD") == 0 || strcmp(poditog, "CCDCCD") == 0
-			|| strcmp(poditog, "CCMCC") == 0 || strcmp(poditog, "CCCMC") == 0) strcat(itog, "CCM");
-		else if (strcmp(poditog, "CMCD") == 0 || strcmp(poditog, "MCCD") == 0) strcat(itog, "DM");
-		else if (strcmp(poditog, "CCMCD") == 0 || strcmp(poditog, "CMCCD") == 0) strcat(itog, "CDM");
-		else if (strcmp(poditog, "CCCMCD") == 0 || strcmp(poditog, "CCDCCD") == 0) strcat(itog, "CCDM");
-		else strcat(itog, poditog);
-	}
-	else {
-		if (strcmp(poditog, "DCCD") == 0 || strcmp(poditog, "CDCD") == 0 || strcmp(poditog, "CCCCCD") == 0
-			|| strcmp(poditog, "CMC") == 0 || strcmp(poditog, "MCC") == 0) strcat(itog, "CM");
-		else if (strcmp(poditog, "DCD") == 0 || strcmp(poditog, "MC") == 0
-			|| strcmp(poditog, "CCCCD") == 0) strcat(itog, "M");
-		else if (strcmp(poditog, "DCDC") == 0) strcat(itog, "MC");
-		else if (strcmp(poditog, "MCMC") == 0) strcat(itog, "MCM");
-		else if (strcmp(poditog, "MCD") == 0) strcat(itog, "DM");
-		else if (strcmp(poditog, "MCDC") == 0 || strcmp(poditog, "DCMC") == 0 || strcmp(poditog, "CCC") == 0) strcat(itog, "DC");
-		else if (strcmp(poditog, "CCCCCCD") == 0 || strcmp(poditog, "CCDCD") == 0
-			|| strcmp(poditog, "CDCCD") == 0 || strcmp(poditog, "CMCC") == 0 || strcmp(poditog, "CCM") == 0) strcat(itog, "CCM");
-		else if (strcmp(poditog, "CCCCCC") == 0 || strcmp(poditog, "CDCC") == 0 || strcmp(poditog, "CCDC") == 0) strcat(itog, "CCD");
-		else if (strcmp(poditog, "CCCCC") == 0 || strcmp(poditog, "CDC") == 0 || strcmp(poditog, "DCC") == 0) strcat(itog, "CD");
-		else if (strcmp(poditog, "CCCC") == 0) strcat(itog, "D");
-		else if (strcmp(poditog, "CCDCC") == 0 || strcmp(poditog, "CCCDC") == 0) strcat(itog, "CCCD");
-		else if (strcmp(poditog, "CCCDCD") == 0 || strcmp(poditog, "CCDCCD") == 0 || strcmp(poditog, "CCMCC") == 0
-			|| strcmp(poditog, "CCCMC") == 0) strcat(itog, "CCCM");
-		else if (strcmp(poditog, "CMCD") == 0 || strcmp(poditog, "MCCD") == 0) strcat(itog, "CDM");
-		else if (strcmp(poditog, "CCMCD") == 0 || strcmp(poditog, "CMCCD") == 0) strcat(itog, "CCDM");
-		else if (strcmp(poditog, "CCCMCD") == 0 || strcmp(poditog, "CCDCCD") == 0) strcat(itog, "CCCDM");
-		else {
-			strcat(itog, "C");
-			strcat(itog, poditog);
-		}
-	}
-}
-// исправление тысяч
-void fix_thousand(char poditog[], char itog[], bool flag) {
 
 	if (!flag) {
 		if (strcmp(poditog, "LXXL") == 0 || strcmp(poditog, "XLXL") == 0 || strcmp(poditog, "XXXXXL") == 0
@@ -111,6 +60,60 @@ void fix_thousand(char poditog[], char itog[], bool flag) {
 			strcat(itog, poditog);
 		}
 	}
+	
+}
+// исправление тысяч
+void fix_thousand(char poditog[], char itog[], bool flag) {
+
+	if (!flag) {
+		if (strcmp(poditog, "DCCD") == 0 || strcmp(poditog, "CDCD") == 0 || strcmp(poditog, "CCCCCD") == 0
+			|| strcmp(poditog, "CMC") == 0 || strcmp(poditog, "MCC") == 0) strcat(itog, "M");
+		else if (strcmp(poditog, "DCD") == 0 || strcmp(poditog, "CDCDC") == 0
+			|| strcmp(poditog, "CCCCD") == 0) strcat(itog, "MC");
+		else if (strcmp(poditog, "DCDC") == 0) strcat(itog, "CCCD");
+		else if (strcmp(poditog, "MCMC") == 0) strcat(itog, "CCCDM");
+		else if (strcmp(poditog, "CMCMC") == 0) strcat(itog, "MCM");
+		else if (strcmp(poditog, "MCD") == 0) strcat(itog, "DCM");
+		else if (strcmp(poditog, "MCDC") == 0 || strcmp(poditog, "DCMC") == 0) strcat(itog, "CCCM");
+		else if (strcmp(poditog, "CCCCCCD") == 0 || strcmp(poditog, "CCDCD") == 0 || strcmp(poditog, "CDCCD") == 0
+			|| strcmp(poditog, "CMCC") == 0 || strcmp(poditog, "CCM") == 0) strcat(itog, "CM");
+		else if (strcmp(poditog, "CCCCCC") == 0 || strcmp(poditog, "CDCC") == 0 || strcmp(poditog, "CCDC") == 0) strcat(itog, "CD");
+		else if (strcmp(poditog, "CCCCC") == 0 || strcmp(poditog, "CDC") == 0 || strcmp(poditog, "DCC") == 0) strcat(itog, "D");
+		else if (strcmp(poditog, "CCCC") == 0) strcat(itog, "DC");
+		else if (strcmp(poditog, "CCDCC") == 0 || strcmp(poditog, "CCCDC") == 0) strcat(itog, "CCD");
+		else if (strcmp(poditog, "CCCDCD") == 0 || strcmp(poditog, "CCDCCD") == 0
+			|| strcmp(poditog, "CCMCC") == 0 || strcmp(poditog, "CCCMC") == 0) strcat(itog, "CCM");
+		else if (strcmp(poditog, "CMCD") == 0 || strcmp(poditog, "MCCD") == 0) strcat(itog, "DM");
+		else if (strcmp(poditog, "CCMCD") == 0 || strcmp(poditog, "CMCCD") == 0) strcat(itog, "CDM");
+		else if (strcmp(poditog, "CCCMCD") == 0 || strcmp(poditog, "CCDCCD") == 0) strcat(itog, "CCDM");
+		else strcat(itog, poditog);
+	}
+	else {
+		if (strcmp(poditog, "DCCD") == 0 || strcmp(poditog, "CDCD") == 0 || strcmp(poditog, "CCCCCD") == 0
+			|| strcmp(poditog, "CMC") == 0 || strcmp(poditog, "MCC") == 0) strcat(itog, "CM");
+		else if (strcmp(poditog, "DCD") == 0 || strcmp(poditog, "MC") == 0
+			|| strcmp(poditog, "CCCCD") == 0) strcat(itog, "M");
+		else if (strcmp(poditog, "DCDC") == 0) strcat(itog, "MC");
+		else if (strcmp(poditog, "MCMC") == 0) strcat(itog, "MCM");
+		else if (strcmp(poditog, "MCD") == 0) strcat(itog, "DM");
+		else if (strcmp(poditog, "MCDC") == 0 || strcmp(poditog, "DCMC") == 0 || strcmp(poditog, "CCC") == 0) strcat(itog, "DC");
+		else if (strcmp(poditog, "CCCCCCD") == 0 || strcmp(poditog, "CCDCD") == 0
+			|| strcmp(poditog, "CDCCD") == 0 || strcmp(poditog, "CMCC") == 0 || strcmp(poditog, "CCM") == 0) strcat(itog, "CCM");
+		else if (strcmp(poditog, "CCCCCC") == 0 || strcmp(poditog, "CDCC") == 0 || strcmp(poditog, "CCDC") == 0) strcat(itog, "CCD");
+		else if (strcmp(poditog, "CCCCC") == 0 || strcmp(poditog, "CDC") == 0 || strcmp(poditog, "DCC") == 0) strcat(itog, "CD");
+		else if (strcmp(poditog, "CCCC") == 0) strcat(itog, "D");
+		else if (strcmp(poditog, "CCDCC") == 0 || strcmp(poditog, "CCCDC") == 0) strcat(itog, "CCCD");
+		else if (strcmp(poditog, "CCCDCD") == 0 || strcmp(poditog, "CCDCCD") == 0 || strcmp(poditog, "CCMCC") == 0
+			|| strcmp(poditog, "CCCMC") == 0) strcat(itog, "CCCM");
+		else if (strcmp(poditog, "CMCD") == 0 || strcmp(poditog, "MCCD") == 0) strcat(itog, "CDM");
+		else if (strcmp(poditog, "CCMCD") == 0 || strcmp(poditog, "CMCCD") == 0) strcat(itog, "CCDM");
+		else if (strcmp(poditog, "CCCMCD") == 0 || strcmp(poditog, "CCDCCD") == 0) strcat(itog, "CCCDM");
+		else {
+			strcat(itog, "C");
+			strcat(itog, poditog);
+		}
+	}
+	
 }
 //исправление десятков
 void fix_ten(char poditog[], char itog[]) {
