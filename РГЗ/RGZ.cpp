@@ -4,65 +4,9 @@
 #include<locale.h>
 #define N 33
 #define S 39
-
 int input_bug_catcher(char num[]);
 
-// исправление сотен
-void fix_hundread(char poditog[], char itog[], bool flag) {
-
-	if (!flag) {
-		if (strcmp(poditog, "LXXL") == 0 || strcmp(poditog, "XLXL") == 0 || strcmp(poditog, "XXXXXL") == 0
-			|| strcmp(poditog, "XCX") == 0 || strcmp(poditog, "CXX") == 0) strcat(itog, "C");
-		else if (strcmp(poditog, "LXL") == 0 || strcmp(poditog, "XLXLX") == 0
-			|| strcmp(poditog, "XXXXL") == 0) strcat(itog, "CX");
-		else if (strcmp(poditog, "LXLX") == 0) strcat(itog, "XXXL");
-		else if (strcmp(poditog, "XCXCX") == 0) strcat(itog, "CXC");
-		else if (strcmp(poditog, "CXCX") == 0) strcat(itog, "XXXLC");
-		else if (strcmp(poditog, "CXL") == 0) strcat(itog, "LXC");
-		else if (strcmp(poditog, "CXLX") == 0 || strcmp(poditog, "LXCX") == 0) strcat(itog, "XXXC");
-		else if (strcmp(poditog, "XXXXXXL") == 0 || strcmp(poditog, "XXLXL") == 0 || strcmp(poditog, "XLXXL") == 0
-			|| strcmp(poditog, "XCXX") == 0 || strcmp(poditog, "XXC") == 0) strcat(itog, "XC");
-		else if (strcmp(poditog, "XXXXXX") == 0 || strcmp(poditog, "XLXX") == 0 || strcmp(poditog, "XXLX") == 0) strcat(itog, "XL");
-		else if (strcmp(poditog, "XXXXX") == 0 || strcmp(poditog, "XLX") == 0 || strcmp(poditog, "LXX") == 0) strcat(itog, "L");
-		else if (strcmp(poditog, "XXXX") == 0) strcat(itog, "LX");
-		else if (strcmp(poditog, "XXLXX") == 0 || strcmp(poditog, "XXXLX") == 0) strcat(itog, "XXL");
-		else if (strcmp(poditog, "XXXLXL") == 0 || strcmp(poditog, "XXLXXL") == 0
-			|| strcmp(poditog, "XXCXX") == 0 || strcmp(poditog, "XXXCX") == 0) strcat(itog, "XXC");
-		else if (strcmp(poditog, "XCXL") == 0 || strcmp(poditog, "CXXL") == 0) strcat(itog, "LC");
-		else if (strcmp(poditog, "XXCXL") == 0 || strcmp(poditog, "XCXXL") == 0) strcat(itog, "XLC");
-		else if (strcmp(poditog, "XXXCXL") == 0 || strcmp(poditog, "XXCXXL") == 0) strcat(itog, "XXLC");
-		else strcat(itog, poditog);
-	}
-	else {
-		if (strcmp(poditog, "LXXL") == 0 || strcmp(poditog, "XLXL") == 0 || strcmp(poditog, "XXXXXL") == 0
-			|| strcmp(poditog, "XCX") == 0 || strcmp(poditog, "CXX") == 0) strcat(itog, "XC");
-		else if (strcmp(poditog, "LXL") == 0 || strcmp(poditog, "CX") == 0
-			|| strcmp(poditog, "XXXXL") == 0) strcat(itog, "C");
-		else if (strcmp(poditog, "LXLX") == 0) strcat(itog, "CX");
-		else if (strcmp(poditog, "CXCX") == 0) strcat(itog, "CXC");
-		else if (strcmp(poditog, "CXL") == 0) strcat(itog, "LC");
-		else if (strcmp(poditog, "CXLX") == 0 || strcmp(poditog, "LXCX") == 0) strcat(itog, "LXC");
-		else if (strcmp(poditog, "XXXXXXL") == 0 || strcmp(poditog, "XXLXL") == 0
-			|| strcmp(poditog, "XLXXL") == 0 || strcmp(poditog, "XCXX") == 0 || strcmp(poditog, "XXC") == 0) strcat(itog, "XXC");
-		else if (strcmp(poditog, "XXXXXX") == 0) strcat(itog, "CCL");
-		else if (strcmp(poditog, "XXXXX") == 0 || strcmp(poditog, "XLX") == 0 || strcmp(poditog, "LXX") == 0) strcat(itog, "XL");
-		else if (strcmp(poditog, "XXXX") == 0) strcat(itog, "L");
-		else if (strcmp(poditog, "XXX") == 0) strcat(itog, "LX");
-		else if (strcmp(poditog, "XXLXX") == 0 || strcmp(poditog, "XXXLX") == 0) strcat(itog, "XXXL");
-		else if (strcmp(poditog, "XLXX") == 0 || strcmp(poditog, "XXLX") == 0) strcat(itog, "XXL");
-		else if (strcmp(poditog, "XXXLXL") == 0 || strcmp(poditog, "XXLXXL") == 0 || strcmp(poditog, "XXCXX") == 0
-			|| strcmp(poditog, "XXXCX") == 0) strcat(itog, "XXXC");
-		else if (strcmp(poditog, "XCXL") == 0 || strcmp(poditog, "CXXL") == 0) strcat(itog, "XLC");
-		else if (strcmp(poditog, "XXCXL") == 0 || strcmp(poditog, "XCXXL") == 0) strcat(itog, "XXLC");
-		else if (strcmp(poditog, "XXXCXL") == 0 || strcmp(poditog, "XXCXXL") == 0) strcat(itog, "XXXLC");
-		else {
-			strcat(itog, "X");
-			strcat(itog, poditog);
-		}
-	}
-	
-}
-// исправление тысяч
+// Исправление разряда тысяч
 void fix_thousand(char poditog[], char itog[], bool flag) {
 
 	if (!flag) {
@@ -93,7 +37,7 @@ void fix_thousand(char poditog[], char itog[], bool flag) {
 			|| strcmp(poditog, "CMC") == 0 || strcmp(poditog, "MCC") == 0) strcat(itog, "CM");
 		else if (strcmp(poditog, "DCD") == 0 || strcmp(poditog, "MC") == 0
 			|| strcmp(poditog, "CCCCD") == 0) strcat(itog, "M");
-		else if (strcmp(poditog, "DCDC") == 0) strcat(itog, "MC");
+		else if (strcmp(poditog, "DCDC") == 0 || (poditog, "CCCD") == 0) strcat(itog, "MC");
 		else if (strcmp(poditog, "MCMC") == 0) strcat(itog, "MCM");
 		else if (strcmp(poditog, "MCD") == 0) strcat(itog, "DM");
 		else if (strcmp(poditog, "MCDC") == 0 || strcmp(poditog, "DCMC") == 0 || strcmp(poditog, "CCC") == 0) strcat(itog, "DC");
@@ -113,11 +57,62 @@ void fix_thousand(char poditog[], char itog[], bool flag) {
 			strcat(itog, poditog);
 		}
 	}
-	
 }
-//исправление десятков
+// Исправление разряда сотен
+void fix_hundred(char poditog[], char itog[], bool flag) {
+	if (!flag) {
+		if (strcmp(poditog, "LXXL") == 0 || strcmp(poditog, "XLXL") == 0 || strcmp(poditog, "XXXXXL") == 0
+			|| strcmp(poditog, "XCX") == 0 || strcmp(poditog, "CXX") == 0) strcat(itog, "C");
+		else if (strcmp(poditog, "LXL") == 0 || strcmp(poditog, "XLXLX") == 0
+			|| strcmp(poditog, "XXXXL") == 0) strcat(itog, "CX");
+		else if (strcmp(poditog, "LXLX") == 0) strcat(itog, "XXXL");
+		else if (strcmp(poditog, "XCXCX") == 0) strcat(itog, "CXC");
+		else if (strcmp(poditog, "CXCX") == 0) strcat(itog, "XXXLC");
+		else if (strcmp(poditog, "CXL") == 0) strcat(itog, "LXC");
+		else if (strcmp(poditog, "CXLX") == 0 || strcmp(poditog, "LXCX") == 0) strcat(itog, "XXXC");
+		else if (strcmp(poditog, "XXXXXXL") == 0 || strcmp(poditog, "XXLXL") == 0 || strcmp(poditog, "XLXXL") == 0
+			|| strcmp(poditog, "XCXX") == 0 || strcmp(poditog, "XXC") == 0) strcat(itog, "XC");
+		else if (strcmp(poditog, "XXXXXX") == 0 || strcmp(poditog, "XLXX") == 0 || strcmp(poditog, "XXLX") == 0) strcat(itog, "XL");
+		else if (strcmp(poditog, "XXXXX") == 0 || strcmp(poditog, "XLX") == 0 || strcmp(poditog, "LXX") == 0) strcat(itog, "L");
+		else if (strcmp(poditog, "XXXX") == 0) strcat(itog, "LX");
+		else if (strcmp(poditog, "XXLXX") == 0 || strcmp(poditog, "XXXLX") == 0) strcat(itog, "XXL");
+		else if (strcmp(poditog, "XXXLXL") == 0 || strcmp(poditog, "XXLXXL") == 0
+			|| strcmp(poditog, "XXCXX") == 0 || strcmp(poditog, "XXXCX") == 0) strcat(itog, "XXC");
+		else if (strcmp(poditog, "XCXL") == 0 || strcmp(poditog, "CXXL") == 0) strcat(itog, "LC");
+		else if (strcmp(poditog, "XXCXL") == 0 || strcmp(poditog, "XCXXL") == 0) strcat(itog, "XLC");
+		else if (strcmp(poditog, "XXXCXL") == 0 || strcmp(poditog, "XXCXXL") == 0) strcat(itog, "XXLC");
+		else strcat(itog, poditog);
+	}
+	else {
+		if (strcmp(poditog, "LXXL") == 0 || strcmp(poditog, "XLXL") == 0 || strcmp(poditog, "XXXXXL") == 0
+			|| strcmp(poditog, "XCX") == 0 || strcmp(poditog, "CXX") == 0) strcat(itog, "XC");
+		else if (strcmp(poditog, "LXL") == 0 || strcmp(poditog, "CX") == 0
+			|| strcmp(poditog, "XXXXL") == 0) strcat(itog, "C");
+		else if (strcmp(poditog, "LXLX") == 0 || strcmp(poditog, "XXXL") == 0) strcat(itog, "CX");
+		else if (strcmp(poditog, "CXCX") == 0) strcat(itog, "CXC");
+		else if (strcmp(poditog, "CXL") == 0) strcat(itog, "LC");
+		else if (strcmp(poditog, "CXLX") == 0 || strcmp(poditog, "LXCX") == 0) strcat(itog, "LXC");
+		else if (strcmp(poditog, "XXXXXXL") == 0 || strcmp(poditog, "XXLXL") == 0
+			|| strcmp(poditog, "XLXXL") == 0 || strcmp(poditog, "XCXX") == 0 || strcmp(poditog, "XXC") == 0) strcat(itog, "XXC");
+		else if (strcmp(poditog, "XXXXXX") == 0) strcat(itog, "CCL");
+		else if (strcmp(poditog, "XXXXX") == 0 || strcmp(poditog, "XLX") == 0 || strcmp(poditog, "LXX") == 0) strcat(itog, "XL");
+		else if (strcmp(poditog, "XXXX") == 0) strcat(itog, "L");
+		else if (strcmp(poditog, "XXX") == 0) strcat(itog, "LX");
+		else if (strcmp(poditog, "XXLXX") == 0 || strcmp(poditog, "XXXLX") == 0) strcat(itog, "XXXL");
+		else if (strcmp(poditog, "XLXX") == 0 || strcmp(poditog, "XXLX") == 0) strcat(itog, "XXL");
+		else if (strcmp(poditog, "XXXLXL") == 0 || strcmp(poditog, "XXLXXL") == 0 || strcmp(poditog, "XXCXX") == 0
+			|| strcmp(poditog, "XXXCX") == 0) strcat(itog, "XXXC");
+		else if (strcmp(poditog, "XCXL") == 0 || strcmp(poditog, "CXXL") == 0) strcat(itog, "XLC");
+		else if (strcmp(poditog, "XXCXL") == 0 || strcmp(poditog, "XCXXL") == 0) strcat(itog, "XXLC");
+		else if (strcmp(poditog, "XXXCXL") == 0 || strcmp(poditog, "XXCXXL") == 0) strcat(itog, "XXXLC");
+		else {
+			strcat(itog, "X");
+			strcat(itog, poditog);
+		}
+	}
+}
+// Исправление разряда десятков
 void fix_ten(char poditog[], char itog[]) {
-
 	if (strcmp(poditog, "VIIV") == 0 || strcmp(poditog, "IVIV") == 0
 		|| strcmp(poditog, "IIIIIV") == 0 || strcmp(poditog, "IXI") == 0 || strcmp(poditog, "XII") == 0) strcat(itog, "X");
 	else if (strcmp(poditog, "VIV") == 0) strcat(itog, "XI");
@@ -139,10 +134,9 @@ void fix_ten(char poditog[], char itog[]) {
 	else strcat(itog, poditog);
 }
 
-
-// Исправление неккоректного римского числа
+// Исправление некорректного римского числа
 char* fix_invalid_roman(char sum[], bool* flag_skobk) {
-	
+
 	short  i = 0, j = 0, len1 = strlen(sum);
 	char itog[N]{}, poditog[N]{};
 	bool flag = false;
@@ -162,10 +156,10 @@ char* fix_invalid_roman(char sum[], bool* flag_skobk) {
 			j++;
 		}
 		else break;
-	}		
+	}
 
 	fix_ten(poditog, itog);
-	
+
 	/*до сотен*/
 	memset(poditog, 0, strlen(poditog));
 	if (itog[strlen(itog) - 1] == 'X' && i != len1) {
@@ -174,17 +168,17 @@ char* fix_invalid_roman(char sum[], bool* flag_skobk) {
 	}
 	j = 0;
 
-	for(; i <= len1; i ++) {
+	for (; i <= len1; i++) {
 
 		if (sum[i] == 'X' || sum[i] == 'L' || (sum[i] == 'C' && sum[i + 1] == 'X')) {
 			poditog[j] = sum[i];
 			j++;
 		}
 		else break;
-		
-	} 
 
-	fix_hundread(poditog, itog, flag);
+	}
+
+	fix_hundred(poditog, itog, flag);
 
 	/*до тысяч*/
 	memset(poditog, 0, strlen(poditog));
@@ -193,7 +187,7 @@ char* fix_invalid_roman(char sum[], bool* flag_skobk) {
 		itog[strlen(itog) - 1] = '\0';
 		flag = true;
 	}
- 	j = 0;
+	j = 0;
 
 	for (; i <= len1; i++) {
 
@@ -204,7 +198,7 @@ char* fix_invalid_roman(char sum[], bool* flag_skobk) {
 		else break;
 	}
 
-	fix_hundread(poditog, itog, flag);
+	fix_thousand(poditog, itog, flag);
 
 
 	if (sum[0] == '(') {
@@ -227,7 +221,7 @@ void fix_controller(char sum[], bool skobka) {
 		puts(sum);
 		return;
 	}
-	char ch_scobk[N]{}, fixsum[S]{}, *fix_ch_scobk;
+	char ch_scobk[N]{}, fixsum[S]{}, * fix_ch_scobk;
 	bool flag_skobk = false;
 	short i = 1;
 
@@ -264,9 +258,8 @@ void fix_controller(char sum[], bool skobka) {
 	strcat(fixsum, "(");
 	_strrev(fixsum);
 	puts(fixsum);
-		
-}
 
+}
 // Сложение двух римских чисел
 void plus_num(char num1[], char num2[], char sum[]) {
 
@@ -449,14 +442,12 @@ void plus_num(char num1[], char num2[], char sum[]) {
 		}
 	}
 	sum[len1 + len2] = '\0';
-	printf("Пробный рез: %s\n", sum);
 	fix_controller(sum, skobka);
 }
+// Проверка корректности ввода римского числа
+int input_bug_catcher(char num[]) {
 
-// Обработка некорректно введённого римского числа пользователем
-int input_bug_catcher(char num[]) { 
-
-	short d_check = 1, len_s = strlen(num); 
+	short d_check = 1, len_s = strlen(num);
 	bool close_skobka = false, skobka = false;
 
 	for (int i = 0; i < len_s; i++) {
@@ -487,7 +478,7 @@ int input_bug_catcher(char num[]) {
 		}
 		if (num[i] == 'C') {
 			if (d_check > 3) break;
-			if (((num[i + 1] == 'D' && num[i - 1] != 'D') || (num[i + 1] == 'M')) && num[i - 1] != 'C') i++;
+			if (((num[i + 1] == 'D' && num[i - 1] != 'D') || (num[i + 1] == 'M')) && num[i - 1] != 'C' && num[i - 1] != 'D') i++;
 			else if (num[i + 1] == 'C') {
 				d_check++;
 				continue;
@@ -502,7 +493,7 @@ int input_bug_catcher(char num[]) {
 		}
 		if (num[i] == 'X') {
 			if (d_check > 3) break;
-			if (((num[i + 1] == 'L' && num[i - 1] != 'L') || (num[i + 1] == 'C')) && num[i - 1] != 'X') i++;
+			if (((num[i + 1] == 'L' && num[i - 1] != 'L') || (num[i + 1] == 'C')) && num[i - 1] != 'X' && num[i - 1] != 'L') i++;
 			else if (num[i + 1] == 'X') {
 				d_check++;
 				continue;
@@ -517,7 +508,7 @@ int input_bug_catcher(char num[]) {
 		}
 		if (num[i] == 'I') {
 			if (d_check > 3) break;
-			if ((num[i + 1] == 'V' && num[i - 1] != 'V') || (num[i + 1] == 'X') && num[i - 1] != 'I') i++;
+			if ((num[i + 1] == 'V' && num[i - 1] != 'V') || (num[i + 1] == 'X') && num[i - 1] != 'I' && num[i - 1] != 'V') i++;
 			else if (num[i + 1] == 'I') {
 				d_check++;
 				continue;
@@ -543,11 +534,10 @@ int input_bug_catcher(char num[]) {
 	return 1; //Допущены ошибки в вводе
 
 }
-
 // Интерфейс пользователя
 void user_interface() {
 
-	char firstRomanNumeral[N], secondRomanNumeral[N], sumOfRomanNumeral[S]{}; 
+	char firstRomanNumeral[N], secondRomanNumeral[N], sumOfRomanNumeral[S]{};
 	short checker;
 
 	// Ввод и проверка первого числа
@@ -575,7 +565,6 @@ void user_interface() {
 	plus_num(firstRomanNumeral, secondRomanNumeral, sumOfRomanNumeral);
 
 }
-
 int main() {
 
 	SetConsoleCP(1251);
